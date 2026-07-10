@@ -1,0 +1,25 @@
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+
+# Uploads (local dev fallback)
+server/uploads/*
+!server/uploads/.gitkeep

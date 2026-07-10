@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Manrope', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+
+  --color-brand-50: #faf7f2;
+  --color-brand-100: #f0e9dc;
+  --color-brand-200: #e0cfaf;
+  --color-brand-300: #ccae7d;
+  --color-brand-400: #b8934f;
+  --color-brand-500: #a67c3d;
+  --color-brand-600: #8a6532;
+  --color-brand-700: #6e4f28;
+  --color-brand-800: #4a3520;
+  --color-brand-900: #2b1f16;
+
+  --color-ink-50: #f6f6f7;
+  --color-ink-100: #e2e2e5;
+  --color-ink-200: #c5c5cb;
+  --color-ink-300: #9c9ca6;
+  --color-ink-400: #6f6f7c;
+  --color-ink-500: #4c4c58;
+  --color-ink-600: #34343f;
+  --color-ink-700: #232329;
+  --color-ink-800: #16161a;
+  --color-ink-900: #0a0a0c;
+
+  --animate-fade-in: fade-in 0.4s ease-out both;
+  --animate-slide-up: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-shimmer: shimmer 1.8s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes shimmer {
+    0% {
+      background-position: -400px 0;
+    }
+    100% {
+      background-position: 400px 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-ink-800 dark:bg-ink-900 dark:text-ink-100 font-sans antialiased;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-brand-300/40;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl backdrop-saturate-150 dark:bg-ink-800/60;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden bg-ink-100 dark:bg-ink-700;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent
+    );
+    background-size: 400px 100%;
+    background-repeat: no-repeat;
+    animation: var(--animate-shimmer);
+  }
+
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+}
